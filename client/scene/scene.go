@@ -1,8 +1,9 @@
 package scene
 
+import "github.com/carabalonepaulo/origin/shared/service"
+
 type Scene interface {
-	Load(manager SceneManager)
+	Load(services service.Services, manager SceneManager)
 	Unload()
-	Update(dt float64)
 	Draw()
 }

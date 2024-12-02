@@ -1,15 +1,21 @@
 package scene
 
+import (
+	"github.com/carabalonepaulo/origin/shared/service"
+)
+
 type Manager struct {
-	current Scene
+	current  Scene
+	services service.Services
 }
 
 type SceneManager interface {
 	ChangeTo(scene Scene)
 }
 
-func NewManager(firstScene Scene) *Manager {
+func NewManager(services service.Services, firstScene Scene) *Manager {
 	manager := &Manager{}
+	manager.services = services
 	manager.ChangeTo(firstScene)
 	return manager
 }
@@ -22,7 +28,7 @@ func (m *Manager) ChangeTo(scene Scene) {
 
 func (m *Manager) Load() {
 	if m.current != nil {
-		m.current.Load(m)
+		m.current.Load(m.services, m)
 	}
 }
 
@@ -32,12 +38,6 @@ func (m *Manager) Unload() {
 	}
 	m.current.Unload()
 	m.current = nil
-}
-
-func (m *Manager) Update(dt float64) {
-	if m.current != nil {
-		m.current.Update(dt)
-	}
 }
 
 func (m *Manager) Draw() {

@@ -24,7 +24,7 @@ func New() service.Service {
 }
 
 func (s *Service) Start(services service.Services, shutdown func()) error {
-	s.manager = scene.NewManager(boot.New())
+	s.manager = scene.NewManager(services, boot.New())
 	s.shutdown = shutdown
 
 	rl.SetTraceLogLevel(rl.LogNone)
@@ -42,9 +42,8 @@ func (s *Service) Stop() {
 func (s *Service) Update(dt float64) {
 	if rl.WindowShouldClose() {
 		s.shutdown()
+		return
 	}
-
-	s.manager.Update(dt)
 
 	rl.BeginDrawing()
 	rl.ClearBackground(rl.RayWhite)
