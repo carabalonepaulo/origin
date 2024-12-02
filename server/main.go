@@ -5,13 +5,14 @@ import (
 
 	"github.com/carabalonepaulo/origin/server/config"
 	"github.com/carabalonepaulo/origin/server/listener"
+	sharedConfig "github.com/carabalonepaulo/origin/shared/config"
 	"github.com/carabalonepaulo/origin/shared/services"
 	"github.com/carabalonepaulo/origin/shared/services/scheduler"
 	"github.com/carabalonepaulo/origin/shared/sys"
 )
 
 func main() {
-	config, err := config.Load(config.PathOrDefault("./config.json"))
+	config, err := sharedConfig.Load[config.Config](sharedConfig.PathOrDefault("./config.json"))
 	if err != nil {
 		log.Println(err)
 		return
