@@ -4,6 +4,10 @@ type Manager struct {
 	current Scene
 }
 
+type SceneManager interface {
+	ChangeTo(scene Scene)
+}
+
 func NewManager(firstScene Scene) *Manager {
 	manager := &Manager{}
 	manager.ChangeTo(firstScene)
@@ -18,7 +22,7 @@ func (m *Manager) ChangeTo(scene Scene) {
 
 func (m *Manager) Load() {
 	if m.current != nil {
-		m.current.Load()
+		m.current.Load(m)
 	}
 }
 

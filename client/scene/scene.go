@@ -1,7 +1,7 @@
 package scene
 
 type Scene interface {
-	Load()
+	Load(manager SceneManager)
 	Unload()
 	Update(dt float64)
 	Draw()

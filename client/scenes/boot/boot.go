@@ -3,6 +3,7 @@ package boot
 import (
 	"fmt"
 
+	"github.com/carabalonepaulo/origin/client/scene"
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
@@ -12,7 +13,7 @@ func New() *Scene {
 	return &Scene{}
 }
 
-func (s *Scene) Load() {}
+func (s *Scene) Load(manager scene.SceneManager) {}
 
 func (s *Scene) Unload() {}
 
