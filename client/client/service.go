@@ -14,6 +14,11 @@ const (
 	Disconnected
 )
 
+type Config struct {
+	host string
+	port uint16
+}
+
 type Service struct {
 	emitter.Emitter
 
@@ -28,11 +33,11 @@ type Service struct {
 	running bool
 }
 
-func New(ip string, port uint16) func() service.Service {
+func New(config *Config) func() service.Service {
 	return func() service.Service {
 		return &Service{
-			ip:   ip,
-			port: port,
+			ip:   config.host,
+			port: config.port,
 		}
 	}
 }

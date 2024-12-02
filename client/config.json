@@ -3,5 +3,10 @@
     "max_timers": 1024,
     "max_workers": 32,
     "tick_interval": "16.67ms"
+  },
+  "client": {
+    "host": "127.0.0.1",
+    "port": 5051,
+    "tick_interval": "16.67ms"
   }
 }

@@ -21,7 +21,7 @@ func main() {
 	err = services.Run(
 		sys.New,
 		scheduler.New(&config.Scheduler),
-		client.New("127.0.0.1", 5051),
+		client.New(&config.Client),
 		scenes.New,
 	)
 	if err != nil {
