@@ -1,0 +1,7 @@
+{
+  "scheduler": {
+    "max_timers": 1024,
+    "max_workers": 32,
+    "tick_interval": "16.67ms"
+  }
+}

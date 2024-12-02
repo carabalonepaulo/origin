@@ -1,0 +1,15 @@
+{
+  "scheduler": {
+    "max_timers": 1024,
+    "max_workers": 32,
+    "tick_interval": "16.67ms"
+  },
+  "listener": {
+    "port": 5051,
+    "max_clients": 4096,
+    "in_limit": 0,
+    "out_limit": 0,
+    "channels": 1,
+    "tick_interval": "16.67ms"
+  }
+}
