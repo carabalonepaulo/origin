@@ -4,27 +4,14 @@ import (
 	"encoding/json"
 	"os"
 
+	"github.com/carabalonepaulo/origin/server/listener"
 	"github.com/carabalonepaulo/origin/shared/services/scheduler"
 )
 
 type (
-	Listener struct {
-		Port         uint16 `json:"port"`
-		MaxClients   int    `json:"max_clients"`
-		InLimit      int    `json:"in_limit"`
-		OutLimit     int    `json:"out_limit"`
-		Channels     uint64 `json:"channels"`
-		TickInterval string `json:"tick_interval"`
-	}
-
-	Database struct {
-		Path         string `json:"path"`
-		TickInterval string `json:"tick_interval"`
-	}
-
 	Config struct {
 		Scheduler scheduler.Config `json:"scheduler"`
-		Listener  `json:"listener"`
+		Listener  listener.Config  `json:"listener"`
 	}
 )
 

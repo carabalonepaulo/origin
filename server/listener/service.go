@@ -4,7 +4,6 @@ import (
 	"slices"
 	"time"
 
-	"github.com/carabalonepaulo/origin/server/config"
 	"github.com/carabalonepaulo/origin/shared/broker"
 	"github.com/carabalonepaulo/origin/shared/emitter"
 	"github.com/carabalonepaulo/origin/shared/service"
@@ -18,10 +17,19 @@ const (
 	PacketReceived
 )
 
+type Config struct {
+	Port         uint16 `json:"port"`
+	MaxClients   int    `json:"max_clients"`
+	InLimit      int    `json:"in_limit"`
+	OutLimit     int    `json:"out_limit"`
+	Channels     uint64 `json:"channels"`
+	TickInterval string `json:"tick_interval"`
+}
+
 type Service struct {
 	emitter.Emitter
 
-	config  *config.Listener
+	config  *Config
 	port    uint16
 	host    enet.Host
 	cmds    chan broker.Command[*Service]
@@ -30,7 +38,7 @@ type Service struct {
 	running bool
 }
 
-func New(config *config.Listener) func() service.Service {
+func New(config *Config) func() service.Service {
 	return func() service.Service {
 		return &Service{
 			Emitter: emitter.Init(3),
