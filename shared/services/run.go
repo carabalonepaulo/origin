@@ -15,7 +15,14 @@ func castAndAdd[T any](slice []T, value any) []T {
 	return slice
 }
 
-func Run(ctors ...func() service.Service) error {
+func Run(ctors ...func() service.Service) {
+	err := TryRun(ctors...)
+	if err != nil {
+		panic(err)
+	}
+}
+
+func TryRun(ctors ...func() service.Service) error {
 	updatable := make([]service.UpdatableService, 0)
 	instances := make([]service.Service, 0)
 

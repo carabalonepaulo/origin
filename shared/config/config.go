@@ -13,7 +13,19 @@ func PathOrDefault(p string) (path string) {
 	return
 }
 
-func Load[T any](path string) (*T, error) {
+func LoadDefault[T any]() *T {
+	return Load[T](PathOrDefault("./config.json"))
+}
+
+func Load[T any](path string) *T {
+	config, err := TryLoad[T](path)
+	if err != nil {
+		panic(err)
+	}
+	return config
+}
+
+func TryLoad[T any](path string) (*T, error) {
 	buff, err := os.ReadFile(path)
 	if err != nil {
 		return nil, err
