@@ -1,7 +1,7 @@
 package main
 
 import (
-	sc "github.com/carabalonepaulo/origin/server/config"
+	c "github.com/carabalonepaulo/origin/server/config"
 	"github.com/carabalonepaulo/origin/server/listener"
 	"github.com/carabalonepaulo/origin/shared/config"
 	"github.com/carabalonepaulo/origin/shared/services"
@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	config := config.LoadDefault[sc.Config]()
+	config := config.LoadDefault[c.Config]()
 	services.Run(
 		sys.New,
 		scheduler.New(&config.Scheduler),
